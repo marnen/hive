@@ -1,0 +1,81 @@
+= Swinger
+ 
+This is a little project to facilitate writing acceptance tests for Java/Swing applications using Cucumber and JRuby.
+
+I am using the Jemmy Netbeans library for driving the application.
+
+As a target application I am using the SwingSet2 demo.
+
+Take a look at lib/swinger/step_definitions for the steps available so far.
+
+Here is an acceptance test example using these steps:
+
+  Scenario: Dialog manipulation
+    Given the frame "SwingSet" is visible
+    When I click the menu "File/About"
+    Then I should see the dialog "About Swing!"
+    Given the dialog "About Swing!" is visible 
+    When I click the button "OK"
+    Then I should not see the dialog "About Swing!"
+
+== Running the tests
+
+To run all features on the test app, just type:
+
+ jruby -S cucumber test/features
+
+Or, if you have Rake (which you should!), just go with:
+
+ jruby -S rake
+
+For only a specific feature:
+
+ jruby -S rake ONLY=combobox
+
+For running the test application:
+
+ jruby -S rake test_app
+
+== Using Swinger in your project
+
+Since Swinger is in active development at this points, there is no stable gem
+available, so you will have to use Swinger from the source.
+
+To do so, just clone the project with:
+
+ git://github.com/demetriusnunes/swinger.git
+
+Or better yet, fork it and clone it from your own repo, so you can contribute!
+ 
+And within your project, require it in your features/support/env.rb
+
+ require '/path/to/swinger/lib/swinger'
+ 
+== Requirements
+
+* Latest JRuby version 
+* Latest Cucumber, Rake and RSpec gems - Install with:
+ jruby -S gem install cucumber rake rspec 
+* Java 1.5 or above
+
+== DONE (all partial implementations)
+
+* Frames
+* Buttons
+* Tabbed Panes
+* Toolbar Buttons
+* Menus
+* Textboxes
+* Dialogs
+* Radio buttons
+* Check boxes
+* Comboboxes
+* Lists
+* Tables
+* Trees
+ 
+== TO DO
+
+* File Choosers
+* Progress bars
+* Sliders
