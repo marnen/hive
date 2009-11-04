@@ -3,15 +3,16 @@ require 'cucumber'
 require 'cucumber/rake/task'
 
 Cucumber::Rake::Task.new(:features, 'Run all Cucumber features') do |t|
-  FEATURE_DIR = 'spec/features'
+  FEATURE_DIR = File.dirname(__FILE__) + '/../spec/features'
   if feature = ENV['ONLY']
-    t.cucumber_opts = "#{FEATURE_DIR}/#{feature}.feature"
+    t.cucumber_opts = %W(#{FEATURE_DIR}/#{feature}.feature)
   else
-    t.cucumber_opts = "#{FEATURE_DIR} --format progress"
+    t.cucumber_opts = %W(#{FEATURE_DIR})
   end
+  t.cucumber_opts += %w(--color >&2)
   if ENV['RCOV']
     t.rcov = true
-    t.rcov_opts = "--include #{FEATURE_DIR}"
+    t.rcov_opts = %W(--include #{FEATURE_DIR})
   end
 end
 
