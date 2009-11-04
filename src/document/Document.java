@@ -35,7 +35,8 @@ public class Document extends javax.swing.JFrame {
     jTable1 = new javax.swing.JTable();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    setTitle("Document");
+    java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("document/Bundle"); // NOI18N
+    setTitle(bundle.getString("Document.title")); // NOI18N
 
     jTable1.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
