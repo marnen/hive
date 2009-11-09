@@ -1,7 +1,7 @@
 path = File.expand_path(File.dirname(__FILE__))
 require File.expand_path(path + '/../../lib/swinger/lib/swinger')
 
-require File.expand_path(path + '/../../../dist/hive.jar')
+require File.expand_path(path + '/../../../package/jar/Hive.jar')
 
 puts "It takes a while for the scenarios to begin executing, so please be patient..."
 
