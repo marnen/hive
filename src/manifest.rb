@@ -2,6 +2,7 @@ $LOAD_PATH.clear #ensure load path is cleared so system gems and libraries are n
 # Load current and subdirectories in src onto the load path
 $LOAD_PATH << File.dirname(__FILE__)
 Dir.glob(File.expand_path(File.dirname(__FILE__) + "/**/*").gsub('%20', ' ')).each do |directory|
+  next if directory =~ /\/gettext\//
   # File.directory? is broken in current JRuby for dirs inside jars
   # http://jira.codehaus.org/browse/JRUBY-2289
   $LOAD_PATH << directory unless directory =~ /\.\w+$/
@@ -25,9 +26,18 @@ require 'resolver'
 case Monkeybars::Resolver.run_location
 when Monkeybars::Resolver::IN_FILE_SYSTEM
   add_to_classpath '../lib/java/monkeybars-1.0.4.jar'
+when Monkeybars::Resolver::IN_JAR_FILE
+  # Have to do this here so we can require gettext below.
+  add_to_load_path 'gettext/lib'
 end
 
 require 'monkeybars'
+
+# FastGettext stuff has to be here so application_view can use it.
+require 'gettext'
+APP_NAME = 'Hive'
+
+
 require 'application_controller'
 require 'application_view'
 
