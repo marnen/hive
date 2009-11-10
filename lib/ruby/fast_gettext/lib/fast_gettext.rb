@@ -8,7 +8,7 @@ module FastGettext
   include FastGettext::Storage
   extend self
 
-  VERSION = File.read( File.join(File.dirname(__FILE__),'..','VERSION') ).strip
+  VERSION = File.read( File.join(File.dirname(__FILE__).gsub!(%r{/[^/]*$}, ''),'VERSION') ).strip
   LOCALE_REX =  /^[a-z]{2}$|^[a-z]{2}_[A-Z]{2}$/
   NAMESPACE_SEPERATOR = '|'
 
