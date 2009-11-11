@@ -5,4 +5,4 @@ Feature: Startup
 
   Scenario: Document window at startup
     Given I have started the application
-    Then I should see the frame "Document"
+    Then I should see the frame "Document-1"

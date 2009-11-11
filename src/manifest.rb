@@ -36,7 +36,12 @@ require 'monkeybars'
 # FastGettext stuff has to be here so application_view can use it.
 require 'gettext'
 APP_NAME = 'Hive'
-
+class Class
+  def load_gettext
+    include GetText
+    bindtextdomain APP_NAME
+  end
+end
 
 require 'application_controller'
 require 'application_view'
