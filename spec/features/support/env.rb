@@ -1,11 +1,11 @@
 path = File.expand_path(File.dirname(__FILE__))
 require File.expand_path(path + '/../../lib/swinger/lib/swinger')
 
-require File.expand_path(path + '/../../../package/jar/Hive.jar')
+$CLASSPATH << path + '/../../../package/classes'
 
 puts "It takes a while for the scenarios to begin executing, so please be patient..."
 
-Java::org::rubyforge::rawr::Main.main([].to_java(:string))
+require path + '/../../../src/main'
 sleep(1)
 
 at_exit do 
