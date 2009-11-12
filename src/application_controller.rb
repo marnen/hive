@@ -3,4 +3,12 @@ class ApplicationController < Monkeybars::Controller
   # in your application
 
   load_gettext
+
+  # Closes all windows and otherwise resets the application to a blank slate.
+  def self.reset
+    DocumentController.active_controllers.values do |c|
+      c.close
+    end
+    DocumentController.send :reset_count
+  end
 end

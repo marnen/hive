@@ -17,4 +17,10 @@ class DocumentController < ApplicationController
     @@count += 1
     super
   end
+
+  protected
+
+  def self.reset_count
+    @@count = 0
+  end
 end

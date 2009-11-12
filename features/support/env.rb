@@ -9,6 +9,19 @@ $NO_MAC_MENUBAR = true # disable Mac-style menu bars so Swinger can drive the me
 require path + '/../../src/main'
 sleep(1)
 
-at_exit do 
+#
+# Start each scenario from a clean slate.
+
+Before do
+  if DocumentController.active_controllers.empty?
+    DocumentController.create_instance.open
+  end
+end
+
+After do
+  ApplicationController.reset
+end
+
+at_exit do
   java.lang.System.exit(0)
 end
