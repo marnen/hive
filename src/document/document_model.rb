@@ -3,6 +3,16 @@ class DocumentModel
   attr_accessor :title
 
   def initialize
-    @title = _('Document-%{num}') % {:num => 1}
+    set_title_with_number 1
+  end
+
+  def count=(number)
+    set_title_with_number number
+  end
+
+  protected
+
+  def set_title_with_number(number)
+    @title = _('Document-%{num}') % {:num => number}
   end
 end

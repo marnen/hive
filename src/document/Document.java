@@ -33,6 +33,10 @@ public class Document extends javax.swing.JFrame {
 
     jScrollPane1 = new javax.swing.JScrollPane();
     jTable1 = new javax.swing.JTable();
+    jMenuBar1 = new javax.swing.JMenuBar();
+    file_menu = new javax.swing.JMenu();
+    file_new_menu_item = new javax.swing.JMenuItem();
+    jMenu2 = new javax.swing.JMenu();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("document/Bundle"); // NOI18N
@@ -48,6 +52,20 @@ public class Document extends javax.swing.JFrame {
     ));
     jScrollPane1.setViewportView(jTable1);
 
+    file_menu.setText(bundle.getString("Document.file_menu.text")); // NOI18N
+    file_menu.setLabel(bundle.getString("FileMenu.text")); // NOI18N
+
+    file_new_menu_item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.META_MASK));
+    file_new_menu_item.setText(bundle.getString("FileMenu.New")); // NOI18N
+    file_menu.add(file_new_menu_item);
+
+    jMenuBar1.add(file_menu);
+
+    jMenu2.setText(bundle.getString("Document.jMenu2.text_1")); // NOI18N
+    jMenuBar1.add(jMenu2);
+
+    setJMenuBar(jMenuBar1);
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -56,7 +74,7 @@ public class Document extends javax.swing.JFrame {
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+      .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
     );
 
     pack();
@@ -74,6 +92,10 @@ public class Document extends javax.swing.JFrame {
     }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JMenu file_menu;
+  private javax.swing.JMenuItem file_new_menu_item;
+  private javax.swing.JMenu jMenu2;
+  private javax.swing.JMenuBar jMenuBar1;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JTable jTable1;
   // End of variables declaration//GEN-END:variables
