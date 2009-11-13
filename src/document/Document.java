@@ -32,7 +32,7 @@ public class Document extends javax.swing.JFrame {
   private void initComponents() {
 
     jScrollPane1 = new javax.swing.JScrollPane();
-    jTable1 = new javax.swing.JTable();
+    data_table = new javax.swing.JTable();
     jMenuBar1 = new javax.swing.JMenuBar();
     file_menu = new javax.swing.JMenu();
     file_new_menu_item = new javax.swing.JMenuItem();
@@ -42,15 +42,7 @@ public class Document extends javax.swing.JFrame {
     java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("document/Bundle"); // NOI18N
     setTitle(bundle.getString("Document.title")); // NOI18N
 
-    jTable1.setModel(new javax.swing.table.DefaultTableModel(
-      new Object [][] {
-        {"a", "b", "c", "d"}
-      },
-      new String [] {
-        "Title1", "Title2", "Title3", "Title4"
-      }
-    ));
-    jScrollPane1.setViewportView(jTable1);
+    jScrollPane1.setViewportView(data_table);
 
     file_menu.setText(bundle.getString("Document.file_menu.text")); // NOI18N
     file_menu.setLabel(bundle.getString("FileMenu.text")); // NOI18N
@@ -100,12 +92,12 @@ public class Document extends javax.swing.JFrame {
     }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JTable data_table;
   private javax.swing.JMenu file_menu;
   private javax.swing.JMenuItem file_new_menu_item;
   private javax.swing.JMenu jMenu2;
   private javax.swing.JMenuBar jMenuBar1;
   private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTable jTable1;
   // End of variables declaration//GEN-END:variables
 
 }
