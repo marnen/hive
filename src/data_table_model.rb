@@ -5,8 +5,8 @@ module Monkeybars::Inflector
   end
 end
 
-# This is a Ruby table model implementation inheriting from javax.swing.AbstractTableModel.
-class DataTableModel < org.marnen.hive.ConcretizedTableModel
+# This is a Ruby table model implementation inheriting from javax.swing.DefaultTableModel.
+class DataTableModel < javax.swing.table.DefaultTableModel
   def column_count
     2
   end
