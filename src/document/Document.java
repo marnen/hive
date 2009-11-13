@@ -55,7 +55,7 @@ public class Document extends javax.swing.JFrame {
     file_menu.setText(bundle.getString("Document.file_menu.text")); // NOI18N
     file_menu.setLabel(bundle.getString("FileMenu.text")); // NOI18N
 
-    file_new_menu_item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.META_MASK));
+    file_new_menu_item.setAccelerator(makeShortcut(java.awt.event.KeyEvent.VK_N));
     file_new_menu_item.setText(bundle.getString("FileMenu.New")); // NOI18N
     file_menu.add(file_new_menu_item);
 
@@ -89,6 +89,14 @@ public class Document extends javax.swing.JFrame {
                 new Document().setVisible(true);
             }
         });
+    }
+
+    /**
+     * Creates a shortcut key with the default modifier (Cmd on Mac OS, Ctrl in most other places)
+     * @param key the VK_* keycode of the shortcut key
+     */
+    public javax.swing.KeyStroke makeShortcut(int key) {
+      return javax.swing.KeyStroke.getKeyStroke(key, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask());
     }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
