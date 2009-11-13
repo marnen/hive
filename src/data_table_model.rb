@@ -8,7 +8,7 @@ end
 # This is a Ruby table model implementation inheriting from javax.swing.AbstractTableModel.
 class DataTableModel < org.marnen.hive.ConcretizedTableModel
   def column_count
-    1
+    2
   end
 
   def row_count

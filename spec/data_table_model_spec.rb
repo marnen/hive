@@ -9,8 +9,8 @@ describe DataTableModel do
   end
 
   describe "constructor" do
-    it "should give a new table one column" do
-      DataTableModel.new.column_count.should == 1
+    it "should give a new table two columns" do
+      DataTableModel.new.column_count.should == 2
     end
   end
 
