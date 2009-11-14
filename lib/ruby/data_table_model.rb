@@ -18,7 +18,20 @@ class DataTableModel < javax.swing.table.DefaultTableModel
     10
   end
 
+  # Returns a JViewport wrapped around row_header_view.
+  def row_header
+    viewport = javax.swing.JViewport.new
+    viewport.view = row_header_view
+    viewport.add_change_listener do
+      # Scroll main viewport to match header -- see http://www.jguru.com/faq/view.jsp?EID=87579
+      parent = viewport.parent
+      parent.viewport.view_position = java.awt.Point.new(parent.viewport.view_position.x, viewport.view_position.y)
+    end
+    viewport
+  end
+
   # Returns a JTable that can serve as a RowHeaderView for this table.
+  # TODO: remove this method, at least from public interface.
   def row_header_view
     RowHeaderModel.new(row_count).table
   end

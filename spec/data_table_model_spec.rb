@@ -19,6 +19,33 @@ describe DataTableModel do
       @model = DataTableModel.new
     end
 
+    describe "row_header" do
+      it "should be valid" do
+        @model.should respond_to(:row_header)
+      end
+
+      it "should return a JViewport" do
+        @model.row_header.should be_a_kind_of(javax.swing.JViewport)
+      end
+
+      it "should have row_header_view as its view" do
+        # Doing it this way because a simple equality test doesn't quite work.  Yuck.
+        vp = mock('JViewport', :null_object => true)
+        table = mock('JTable')
+        @model.stub!(:row_header_view).and_return table
+        vp.should_receive(:view=).with(table)
+        javax.swing.JViewport.stub!(:new).and_return vp
+        @model.row_header
+      end
+
+      it "should have a change listener" do
+        vp = mock('JViewport', :null_object => true)
+        vp.should_receive(:add_change_listener).and_return true
+        javax.swing.JViewport.stub!(:new).and_return vp
+        @model.row_header
+      end
+    end
+
     describe "row_header_view" do
       it "should be valid" do
         @model.should respond_to(:row_header_view)
