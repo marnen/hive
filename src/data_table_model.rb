@@ -20,12 +20,19 @@ class DataTableModel < javax.swing.table.DefaultTableModel
     view
   end
 
+  def set_value_at(value, row, col)
+    if row >= row_count or col >= column_count
+      raise IndexError, "(#{row}, #{col}) is beyond the maximum coordinates, which are (#{row_count - 1}, #{column_count - 1})."
+    end
+    value # for now!
+  end
+
   def value_at(row, col)
     "R#{row}, C#{col}"
   end
 
   # Define some Java-style aliases, since these are already defined in the superclass.
-  [:getColumnCount, :getRowCount, :getValueAt].each do |method|
+  [:getColumnCount, :getRowCount, :getValueAt, :setValueAt].each do |method|
     alias_java_method method
   end
 end

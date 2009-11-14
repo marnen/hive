@@ -15,11 +15,11 @@ describe DataTableModel do
   end
 
   describe "instance methods" do
-    describe "row_header_view" do
-      before :each do
-        @model = DataTableModel.new
-      end
+    before :each do
+      @model = DataTableModel.new
+    end
 
+    describe "row_header_view" do
       it "should be valid" do
         @model.should respond_to(:row_header_view)
       end
@@ -38,6 +38,24 @@ describe DataTableModel do
 
       it "should use a header-style renderer for numbers" do
         @model.row_header_view.get_default_renderer(java.lang.Number).java_class.should == javax.swing.table.JTableHeader.new.default_renderer.java_class
+      end
+    end
+
+    describe "set_value_at" do
+      it "should be valid" do
+        @model.should respond_to(:set_value_at)
+      end
+
+      it "should return the value when the cell reference is legitimate" do
+        @model.set_value_at("value", @model.row_count - 1, @model.column_count - 1).should == "value"
+      end
+
+      it "should raise an IndexError when the cell reference is not legitimate" do
+        lambda{@model.set_value_at("value", @model.row_count, @model.column_count)}.should raise_error(IndexError)
+      end
+
+      it "should be available as setValueAt" do
+        @model.setValueAt("value", @model.row_count - 1, @model.column_count - 1).should == "value"
       end
     end
   end
