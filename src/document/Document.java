@@ -31,7 +31,7 @@ public class Document extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    jScrollPane1 = new javax.swing.JScrollPane();
+    scroll_pane = new javax.swing.JScrollPane();
     data_table = new javax.swing.JTable();
     jMenuBar1 = new javax.swing.JMenuBar();
     file_menu = new javax.swing.JMenu();
@@ -42,7 +42,7 @@ public class Document extends javax.swing.JFrame {
     java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("document/Bundle"); // NOI18N
     setTitle(bundle.getString("Document.title")); // NOI18N
 
-    jScrollPane1.setViewportView(data_table);
+    scroll_pane.setViewportView(data_table);
 
     file_menu.setText(bundle.getString("Document.file_menu.text")); // NOI18N
     file_menu.setLabel(bundle.getString("FileMenu.text")); // NOI18N
@@ -62,11 +62,11 @@ public class Document extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
+      .addComponent(scroll_pane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+      .addComponent(scroll_pane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
     );
 
     pack();
@@ -97,7 +97,7 @@ public class Document extends javax.swing.JFrame {
   private javax.swing.JMenuItem file_new_menu_item;
   private javax.swing.JMenu jMenu2;
   private javax.swing.JMenuBar jMenuBar1;
-  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JScrollPane scroll_pane;
   // End of variables declaration//GEN-END:variables
 
 }

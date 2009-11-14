@@ -1,6 +1,7 @@
 class DocumentView < ApplicationView
   set_java_class 'document.Document'
   map :view => 'data_table.model', :model => :data
+  map :view => 'scroll_pane.row_header_view', :model => 'data.row_header_view'
   raw_mapping :set_window_title, :get_window_title # map window title to model.title
 
   protected
