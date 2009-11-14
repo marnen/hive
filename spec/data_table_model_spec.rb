@@ -50,8 +50,13 @@ describe DataTableModel do
         @model.set_value_at("value", @model.row_count - 1, @model.column_count - 1).should == "value"
       end
 
-      it "should raise an IndexError when the cell reference is not legitimate" do
+      it "should raise an exception (and not set the value) when the cell reference is not legitimate" do
         lambda{@model.set_value_at("value", @model.row_count, @model.column_count)}.should raise_error(IndexError)
+        begin
+          @model.get_value_at(@model.row_count, @model.column_count).should_not == "value"
+        rescue NativeException
+          # ignore exceptions
+        end
       end
 
       it "should be available as setValueAt" do
