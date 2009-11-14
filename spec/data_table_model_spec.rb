@@ -28,10 +28,6 @@ describe DataTableModel do
         @model.row_header_view.should be_a_kind_of(javax.swing.JTable)
       end
 
-      it "should use a RowHeaderModel for its table model" do
-        @model.row_header_view.model.should be_a_kind_of(RowHeaderModel)
-      end
-
       it "should have the same number of rows as this table" do
         @model.row_header_view.row_count.should == @model.row_count
       end

@@ -20,12 +20,7 @@ class DataTableModel < javax.swing.table.DefaultTableModel
 
   # Returns a JTable that can serve as a RowHeaderView for this table.
   def row_header_view
-    # TODO: refactor this into its own JTable subclass so this can all be in the constructor.
-    @header_renderer ||= javax.swing.table.JTableHeader.new.default_renderer
-    view = javax.swing.JTable.new RowHeaderModel.new(row_count)
-    view.set_default_renderer(java.lang.Number, @header_renderer)
-    view.preferred_scrollable_viewport_size = view.preferred_size
-    view
+    RowHeaderModel.new(row_count).table
   end
 
   def set_value_at(value, row, col)

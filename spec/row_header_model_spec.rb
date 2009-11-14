@@ -33,6 +33,28 @@ describe RowHeaderModel do
       end
     end
 
+    describe "table" do
+      it "should be valid" do
+        @model.should respond_to(:table)
+      end
+
+      it "should return a JTable" do
+        @model.table.should be_a_kind_of(javax.swing.JTable)
+      end
+
+      it "should use the RowHeaderModel as its model" do
+        @model.table.model.should == @model
+      end
+
+      it "should use a header-style renderer for numbers" do
+        @model.table.get_default_renderer(java.lang.Number).java_class.should == javax.swing.table.JTableHeader.new.default_renderer.java_class
+      end
+
+      it "should set its viewport size" do
+        @model.table.preferred_scrollable_viewport_size.should == @model.table.preferred_size
+      end
+   end
+
     describe "value_at" do
       it "should be valid" do
         @model.should respond_to(:value_at)
