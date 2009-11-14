@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/spec_helper'
-require File.dirname(__FILE__) + '/../../src/data_table_model'
+require 'data_table_model'
 
 describe DataTableModel do
   describe "general properties" do

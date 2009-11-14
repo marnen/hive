@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/spec_helper'
-require File.dirname(__FILE__) + '/../src/row_header_model'
+require 'row_header_model'
 
 describe RowHeaderModel do
   describe "general properties" do
