@@ -71,6 +71,7 @@ require 'utilities' # Some common app-wide stuff
 case Monkeybars::Resolver.run_location
 when Monkeybars::Resolver::IN_FILE_SYSTEM
   # Files to be added only when running from the file system go here
+  add_to_classpath '../lib/java/h2-1.2.123.jar'
 when Monkeybars::Resolver::IN_JAR_FILE
   # Files to be added only when run from inside a jar file
 end
