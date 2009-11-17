@@ -14,6 +14,12 @@ class DocumentController < ApplicationController
   end
 
   def self.create_instance
+    # Perhaps we should have this be AWT except in the test environment.  It's got a better file chooser than Swing.
+    dialog = javax.swing.JFileChooser.new
+    dialog.dialog_title = _('New')
+    dialog.show_dialog(nil, _('Create'))
+    file = dialog.selected_file
+
     @@count += 1
     super
   end
