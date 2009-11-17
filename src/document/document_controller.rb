@@ -10,15 +10,21 @@ class DocumentController < ApplicationController
   set_close_action :exit
 
   def file_new_menu_item_action_performed
-    self.class.create_instance.open
+    instance = self.class.create_instance
+    instance.open unless instance.nil?
   end
 
   def self.create_instance
-    # Perhaps we should have this be AWT except in the test environment.  It's got a better file chooser than Swing.
-    dialog = javax.swing.JFileChooser.new
-    dialog.dialog_title = _('New')
-    dialog.show_dialog(nil, _('Create'))
-    file = dialog.selected_file
+    if $MOCK_FILE_CHOOSERS
+    else
+      dialog = java.awt.FileDialog.new(nil, _('New'), java.awt.FileDialog::SAVE)
+      dialog.show
+      if dialog.file.nil?
+        # User cancelled without selecting a file
+        return nil
+      end
+      filename = dialog.directory + dialog.file
+    end
 
     @@count += 1
     super
