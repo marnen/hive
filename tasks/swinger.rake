@@ -3,7 +3,7 @@ require 'cucumber'
 require 'cucumber/rake/task'
 
 Cucumber::Rake::Task.new(:features, 'Run all Cucumber features') do |t|
-  FEATURE_DIR = File.dirname(__FILE__) + '/../spec/features'
+  FEATURE_DIR = File.dirname(__FILE__) + '/../features'
   if feature = ENV['ONLY']
     t.cucumber_opts = %W(#{FEATURE_DIR}/#{feature}.feature)
   else
