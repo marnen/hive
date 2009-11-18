@@ -6,4 +6,7 @@ Feature: File menu
   Scenario: New
     Given the frame "Document-1" is visible
     When I click the menu "File/New"
+    Given the file chooser "New" is visible
+    When I select the file "Document-2"
+    And I click the button "OK"
     Then I should see the frame "Document-2"

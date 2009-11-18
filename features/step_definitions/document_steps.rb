@@ -1,5 +1,5 @@
-Given /^I have a new document$/ do
-  DocumentController.create_instance.open
+Given /^I have a new document called "([^\"]*)"$/ do |name|
+  DocumentController.create_instance(name).open
 end
 
 Then /^it should contain a table$/ do
