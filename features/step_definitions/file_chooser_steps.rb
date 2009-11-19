@@ -10,6 +10,10 @@ When t(/^I select the file "([^\"]*)"$/) do |name|
   When %Q(I fill the text field "#1" with "#{name}")
 end
 
+When t(/^I approve the file chooser$/) do
+  When %Q(I click the button "OK")
+end
+
 When t(/^I close the file chooser "([^\"]*)"$/) do |name|
   dialog(name, nil).close
 end

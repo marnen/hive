@@ -8,5 +8,5 @@ Feature: File menu
     When I click the menu "File/New"
     Given the file chooser "New" is visible
     When I select the file "Document-2"
-    And I click the button "OK"
+    And I approve the file chooser
     Then I should see the frame "Document-2"
