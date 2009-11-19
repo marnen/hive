@@ -16,20 +16,29 @@ class ApplicationController < Monkeybars::Controller
   # TODO: Should this be in its own class?  Should it return the File object itself?
   def self.choose_file
     if $MOCK_FILE_CHOOSERS # Fake the dialog since Swinger can't drive AWT widgets
-      filename = javax.swing.JOptionPane.show_input_dialog(nil, _('Enter file path:'), _('New'), javax.swing.JOptionPane::QUESTION_MESSAGE)
-      if filename.nil?
-        return nil
-      else
-        return File.expand_path filename
-      end
+      choose_file_mock
     else
-      dialog = java.awt.FileDialog.new(nil, _('New'), java.awt.FileDialog::SAVE)
-      dialog.show
-      if dialog.file.nil?
-        # User cancelled without selecting a file
-        return nil
-      end
-      return dialog.directory + dialog.file
+      choose_file_awt
+    end
+  end
+
+  protected
+
+  def self.choose_file_awt
+    dialog = java.awt.FileDialog.new(nil, _('New'), java.awt.FileDialog::SAVE)
+    dialog.show
+    if dialog.file.nil? # User cancelled without selecting a file
+      return nil
+    end
+    return dialog.directory + dialog.file
+  end
+
+  def self.choose_file_mock
+    filename = javax.swing.JOptionPane.show_input_dialog(nil, _('Enter file path:'), _('New'), javax.swing.JOptionPane::QUESTION_MESSAGE)
+    if filename.nil? # User cancelled
+      return nil
+    else
+      return File.expand_path filename
     end
   end
 end
