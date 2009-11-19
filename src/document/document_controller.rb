@@ -15,25 +15,7 @@ class DocumentController < ApplicationController
   end
 
   def self.create_instance(filename = nil)
-    if filename.nil?
-      # TODO: put all this dialog code somewhere else!
-      if $MOCK_FILE_CHOOSERS
-        filename = javax.swing.JOptionPane.show_input_dialog(nil, _('Enter file path:'), _('New'), javax.swing.JOptionPane::QUESTION_MESSAGE)
-        if filename.nil?
-          return nil
-        else
-          filename = File.expand_path filename
-        end
-      else
-        dialog = java.awt.FileDialog.new(nil, _('New'), java.awt.FileDialog::SAVE)
-        dialog.show
-        if dialog.file.nil?
-          # User cancelled without selecting a file
-          return nil
-        end
-        filename = dialog.directory + dialog.file
-      end
-    end
+    filename ||= choose_file
 
     @@count += 1
     super()
