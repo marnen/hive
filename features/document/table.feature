@@ -15,5 +15,6 @@ Feature: Table in document
     When I change the cell at row 3 and column 2 to "new value"
     Then I should see "new value" in the table
 
+  @pending
   Scenario: Row numbers should not scroll separately
     When I can figure out how to write this, I will!  See http://www.jguru.com/faq/view.jsp?EID=87579 .

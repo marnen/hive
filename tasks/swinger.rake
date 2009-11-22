@@ -9,7 +9,7 @@ Cucumber::Rake::Task.new(:features, 'Run all Cucumber features') do |t|
   else
     t.cucumber_opts = %W(#{FEATURE_DIR})
   end
-  t.cucumber_opts += %w(--color >&2)
+  t.cucumber_opts += %w(--tags ~@pending --color >&2)
   if ENV['RCOV']
     t.rcov = true
     t.rcov_opts = %W(--include #{FEATURE_DIR})

@@ -1,4 +1,6 @@
 class ApplicationController < Monkeybars::Controller
+  require 'document_controller'
+  
   # Add content here that you want to be available to all the controllers
   # in your application
 
@@ -10,7 +12,14 @@ class ApplicationController < Monkeybars::Controller
       DocumentController.active_controllers.values do |c|
         c.close
       end
-      DocumentController.send :reset_count
+      
+      startup
+    end
+
+    # Starts the application.
+    def startup
+      # TODO: stop opening this wasteful document at startup!
+      DocumentController.instance.open
     end
 
     # Displays a file chooser dialog, and returns the full pathname of the selected file, or nil if the dialog was cancelled.

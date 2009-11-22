@@ -4,9 +4,10 @@ Feature: File menu
   So I can easily work with my files
 
   Scenario: New
-    Given the frame "Document-1" is visible
+    Given I have a new document called "Document-1"
+    And the frame "Document-1" is visible
     When I click the menu "File/New"
     Given the file chooser "New" is visible
-    When I select the file "Document-2"
+    When I select the file "New file for test"
     And I approve the file chooser
-    Then I should see the frame "Document-2"
+    Then I should see the frame "New file for test"

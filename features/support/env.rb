@@ -14,12 +14,6 @@ sleep(1)
 #
 # Start each scenario from a clean slate.
 
-Before do
-  if DocumentController.active_controllers.empty?
-    DocumentController.create_instance.open
-  end
-end
-
 After do
   ApplicationController.reset
 end

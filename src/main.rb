@@ -47,8 +47,7 @@ GlobalErrorHandler.on_error {|exception, thread| show_error_dialog_and_exit(exce
 
 begin
   # Your application code goes here
-  require 'document_controller'
-  DocumentController.instance.open
+  ApplicationController.startup
 rescue => e
   show_error_dialog_and_exit(e)
 end
