@@ -1,0 +1,2 @@
+autotest: &options --format progress --tags ~@pending
+autotest-all: *options
