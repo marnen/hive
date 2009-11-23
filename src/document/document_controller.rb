@@ -14,7 +14,9 @@ class DocumentController < ApplicationController
   def self.create_instance(filename = nil)
     filename ||= choose_file
 
-    @title = File.basename filename
-    super()
+    File.open filename, 'a' do |file|
+      @title = File.basename filename
+      super()
+    end
   end
 end

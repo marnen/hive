@@ -6,8 +6,9 @@ Given t(/^the file chooser "([^\"]*)" is the container$/) do |name|
   container.set dialog(name, nil)
 end
 
-When t(/^I select the file "([^\"]*)"$/) do |name|
-  When %Q(I fill the text field "#1" with "#{name}")
+When t(/^I select the (temp(?:orary)? )?file "([^\"]*)"$/) do |temp, name|
+  prefix = temp.to_s.empty? ? nil : $TEMP_DIR
+  When %Q(I fill the text field "#1" with "#{File.join [prefix, name].compact}")
 end
 
 When t(/^I approve the file chooser$/) do

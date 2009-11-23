@@ -1,5 +1,5 @@
 Given /^I have a new document called "([^\"]*)"$/ do |name|
-  DocumentController.create_instance(name).open
+  DocumentController.create_instance(File.join $TEMP_DIR, name).open
 end
 
 Then /^it should contain a table$/ do

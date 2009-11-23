@@ -8,6 +8,7 @@ Feature: File menu
     And the frame "Document-1" is visible
     When I click the menu "File/New"
     Given the file chooser "New" is visible
-    When I select the file "New file for test"
+    When I select the temporary file "New file for test"
     And I approve the file chooser
     Then I should see the frame "New file for test"
+    And I should have a temporary file called "New file for test"

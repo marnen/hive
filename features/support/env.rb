@@ -1,5 +1,6 @@
 path = File.expand_path(File.dirname(__FILE__))
 require File.expand_path(path + '/../lib/swinger/lib/swinger')
+require 'tmpdir' # so Dir.mktmpdir will work
 
 $CLASSPATH << path + '/../../package/classes'
 
@@ -14,7 +15,12 @@ sleep(1)
 #
 # Start each scenario from a clean slate.
 
+Before do
+  $TEMP_DIR = Dir.mktmpdir APP_NAME # Make a temp directory
+end
+
 After do
+  FileUtils.rm_r $TEMP_DIR # Get rid of the temp directory
   ApplicationController.reset
 end
 
