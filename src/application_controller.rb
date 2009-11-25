@@ -1,4 +1,5 @@
 class ApplicationController < Monkeybars::Controller
+  require 'tmpdir'
   require 'document_controller'
   
   # Add content here that you want to be available to all the controllers
@@ -19,7 +20,7 @@ class ApplicationController < Monkeybars::Controller
     # Starts the application.
     def startup
       # TODO: stop opening this wasteful document at startup!
-      DocumentController.instance.open
+      DocumentController.create_instance(File.join Dir.mktmpdir('hive'), '*scratch*').open
     end
 
     # Displays a file chooser dialog, and returns the full pathname of the selected file, or nil if the dialog was cancelled.

@@ -1,8 +1,9 @@
 class DocumentController < ApplicationController
   set_model 'DocumentModel' do |model|
-    # Workaround since {DocumentModel.new @@count} doesn't work -- see http://kenai.com/jira/browse/MONKEYBARS-15
-    model.title = @title
+    # Workaround since {DocumentModel.new @filename} doesn't work -- see http://kenai.com/jira/browse/MONKEYBARS-15
+    model.filename = @filename
   end
+
   set_view 'DocumentView'
   set_close_action :exit
 
@@ -14,9 +15,7 @@ class DocumentController < ApplicationController
   def self.create_instance(filename = nil)
     filename ||= choose_file
 
-    File.open filename, 'a' do |file|
-      @title = File.basename filename
-      super()
-    end
+    @filename = filename
+    super()
   end
 end

@@ -2,23 +2,43 @@ class DocumentModel
   require 'data_table_model'
   
   load_gettext
-  # Window title.
-  attr_accessor :title
   # Structure holding the actual data.
   attr_accessor :data
+  # Name of the associated file.
+  attr_reader :filename
 
-  def initialize
-    set_title_with_number 1
+  def initialize(filename = nil)
     @data = DataTableModel.new
+    if filename
+      self.filename = filename
+    end
   end
 
-  def count=(number)
-    set_title_with_number number
+  # Sets the filename, but only if it's nil.
+  # This is a workaround for Monkeybars bug 15 (see DocumentController) -- we can remove it when that bug is fixed.
+  def filename=(string)
+    if filename.nil?
+      @filename = string
+      create_file @filename
+      return @filename
+    else
+      # TODO: choose a type for this exception
+      raise "Can't change filename on DocumentModel!"
+    end
+  end
+
+  # Returns the document title (for example, for window title bar).
+  # This will normally be the basename of the associated file.
+  def title
+    filename.nil? ? nil : File.basename(filename)
   end
 
   protected
 
-  def set_title_with_number(number)
-    @title = _('Document-%{num}') % {:num => number}
+  # Create the document as a directory.
+  def create_file(filename)
+    # See zipfile branch in repository for zip file creation code.
+    Dir.mkdir filename
+    # TODO: Handle case where directory can't be created.
   end
 end
