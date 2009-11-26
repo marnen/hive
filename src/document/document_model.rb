@@ -18,8 +18,10 @@ class DocumentModel
   # This is a workaround for Monkeybars bug 15 (see DocumentController) -- we can remove it when that bug is fixed.
   def filename=(string)
     if filename.nil?
-      @filename = string
-      create_file @filename
+      if string # don't bother if we got passed another nil
+        @filename = string
+        create_file @filename
+      end
       return @filename
     else
       # TODO: choose a type for this exception

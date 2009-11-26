@@ -62,6 +62,12 @@ It's probably OK if the DB springs into existence when the first table is added.
         @model.filename.should == filename
         lambda {@model.filename = File.join @tmpdir, 'bar'}.should raise_error
       end
+
+      it "should not raise an error if filename is changed from nil to nil" do
+        @model.filename.should be_nil
+        lambda {@model.filename = nil}.should_not raise_error
+        @model.filename.should be_nil
+      end
     end
 
     describe "title" do
