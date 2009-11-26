@@ -30,5 +30,5 @@ Then t(/^I should (not )*see the (internal )*frame "([^\"]*)"$/) do |negation, i
 end
 
 When t(/^I close the (internal )*frame "([^\"]*)"$/) do |internal, name|
-  frame(name, internal).set_closed(true)
+  internal ? frame(name, internal).set_closed(true) : frame(name, internal).close
 end
