@@ -36,6 +36,7 @@ public class Document extends javax.swing.JFrame {
     jMenuBar1 = new javax.swing.JMenuBar();
     file_menu = new javax.swing.JMenu();
     file_new_menu_item = new javax.swing.JMenuItem();
+    file_open_menu_item = new javax.swing.JMenuItem();
     jMenu2 = new javax.swing.JMenu();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,6 +51,10 @@ public class Document extends javax.swing.JFrame {
     file_new_menu_item.setAccelerator(makeShortcut(java.awt.event.KeyEvent.VK_N));
     file_new_menu_item.setText(bundle.getString("FileMenu.New")); // NOI18N
     file_menu.add(file_new_menu_item);
+
+    file_open_menu_item.setAccelerator(makeShortcut(java.awt.event.KeyEvent.VK_O));
+    file_open_menu_item.setText(bundle.getString("FileMenu.Open")); // NOI18N
+    file_menu.add(file_open_menu_item);
 
     jMenuBar1.add(file_menu);
 
@@ -95,6 +100,7 @@ public class Document extends javax.swing.JFrame {
   private javax.swing.JTable data_table;
   private javax.swing.JMenu file_menu;
   private javax.swing.JMenuItem file_new_menu_item;
+  private javax.swing.JMenuItem file_open_menu_item;
   private javax.swing.JMenu jMenu2;
   private javax.swing.JMenuBar jMenuBar1;
   private javax.swing.JScrollPane scroll_pane;

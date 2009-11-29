@@ -6,9 +6,12 @@ class DocumentModel
   attr_accessor :data
   # Name of the associated file.
   attr_reader :filename
+  # Is this a new file? (Monkeybars bug 15 workaround.)
+  attr_accessor :new_file
 
-  def initialize(filename = nil)
+  def initialize(filename = nil, new_file = true)
     @data = DataTableModel.new
+    @new_file = new_file
     if filename
       self.filename = filename
     end
@@ -20,7 +23,7 @@ class DocumentModel
     if filename.nil?
       if string # don't bother if we got passed another nil
         @filename = string
-        create_file @filename
+        create_file @filename if @new_file
       end
       return @filename
     else

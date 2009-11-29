@@ -21,12 +21,21 @@ describe DocumentModel do
       lambda {DocumentModel.new File.join(@tmpdir, 'foo')}.should_not raise_error(ArgumentError)
     end
 
-    it "should create a new folder with the specified filename" do
-      filename = File.join(@tmpdir, 'some crazy filename')
+    it "should create a new folder with the specified filename, if new_file is true or unspecified" do
+      [['filename without new_file'], ['filename with new_file', true]].each do |args|
+        filename = args[0] = File.join(@tmpdir, args[0])
+        File.should_not exist(filename)
+        DocumentModel.new *args
+        File.should exist(filename)
+        File.stat(filename).should be_directory
+      end
+    end
+
+    it "should not create a new folder if new_file is false" do
+      filename = File.join(@tmpdir, 'this file should not be created')
       File.should_not exist(filename)
-      DocumentModel.new filename
-      File.should exist(filename)
-      File.stat(filename).should be_directory
+      DocumentModel.new filename, false
+      File.should_not exist(filename)
     end
 
     it "should put an H2 database into the folder it creates" do
@@ -47,6 +56,11 @@ It's probably OK if the DB springs into existence when the first table is added.
     it "should have a data attribute (read/write)" do
       @model.should respond_to(:data)
       @model.should respond_to(:data=)
+    end
+
+    it "should have a new_file attribute (read/write)" do
+      @model.should respond_to(:new_file)
+      @model.should respond_to(:new_file=)
     end
 
     describe "filename" do

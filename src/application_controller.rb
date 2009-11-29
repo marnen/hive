@@ -20,23 +20,27 @@ class ApplicationController < Monkeybars::Controller
     # Starts the application.
     def startup
       # TODO: stop opening this wasteful document at startup!
+      # TODO: remove tmpdir from lib/ruby when we remove this line.
       DocumentController.create_instance(File.join Dir.mktmpdir('hive'), '*scratch*').open
     end
 
-    # Displays a file chooser dialog, and returns the full pathname of the selected file, or nil if the dialog was cancelled.
+    # Displays a file chooser dialog with the supplied title and mode.
+    # Mode can be :load or :save.
+    # Returns the full pathname of the selected file, or nil if the dialog was cancelled.
     # TODO: Should this be in its own class?  Should it return the File object itself?
-    def choose_file
+    def choose_file(title, mode = :save)
       if $MOCK_FILE_CHOOSERS # Fake the dialog since Swinger can't drive AWT widgets
-        choose_file_mock
+        choose_file_mock title, mode
       else
-        choose_file_awt
+        choose_file_awt title, mode
       end
     end
 
     protected
 
-    def choose_file_awt
-      dialog = java.awt.FileDialog.new(nil, _('New'), java.awt.FileDialog::SAVE)
+    def choose_file_awt(title, mode)
+      java_mode =  java.awt.FileDialog.const_get mode.to_s.upcase!
+      dialog = java.awt.FileDialog.new(nil, title, java_mode)
       dialog.show
       if dialog.file.nil? # User cancelled without selecting a file
         return nil
@@ -44,8 +48,8 @@ class ApplicationController < Monkeybars::Controller
       return dialog.directory + dialog.file
     end
 
-    def choose_file_mock
-      filename = javax.swing.JOptionPane.show_input_dialog(nil, _('Enter file path:'), _('New'), javax.swing.JOptionPane::QUESTION_MESSAGE)
+    def choose_file_mock(title, mode)
+      filename = javax.swing.JOptionPane.show_input_dialog(nil, _('Enter file path:'), title, javax.swing.JOptionPane::QUESTION_MESSAGE)
       if filename.nil? # User cancelled
         return nil
       else
