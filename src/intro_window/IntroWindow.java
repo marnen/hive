@@ -33,20 +33,11 @@ public class IntroWindow extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    jMenuBar1 = new javax.swing.JMenuBar();
-    jMenu1 = new javax.swing.JMenu();
-    jMenu2 = new javax.swing.JMenu();
     jLabel1 = new javax.swing.JLabel();
-    jMenuBar2 = new javax.swing.JMenuBar();
+    jMenuBar1 = new javax.swing.JMenuBar();
     file_menu = new javax.swing.JMenu();
     file_new_menu_item = new javax.swing.JMenuItem();
     file_open_menu_item = new javax.swing.JMenuItem();
-
-    jMenu1.setText("File");
-    jMenuBar1.add(jMenu1);
-
-    jMenu2.setText("Edit");
-    jMenuBar1.add(jMenu2);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("intro_window/Bundle"); // NOI18N
@@ -67,9 +58,9 @@ public class IntroWindow extends javax.swing.JFrame {
     file_open_menu_item.setText(bundle1.getString("FileMenu.Open")); // NOI18N
     file_menu.add(file_open_menu_item);
 
-    jMenuBar2.add(file_menu);
+    jMenuBar1.add(file_menu);
 
-    setJMenuBar(jMenuBar2);
+    setJMenuBar(jMenuBar1);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -108,10 +99,7 @@ public class IntroWindow extends javax.swing.JFrame {
   private javax.swing.JMenuItem file_new_menu_item;
   private javax.swing.JMenuItem file_open_menu_item;
   private javax.swing.JLabel jLabel1;
-  private javax.swing.JMenu jMenu1;
-  private javax.swing.JMenu jMenu2;
   private javax.swing.JMenuBar jMenuBar1;
-  private javax.swing.JMenuBar jMenuBar2;
   // End of variables declaration//GEN-END:variables
 
 }
