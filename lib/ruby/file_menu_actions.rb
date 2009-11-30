@@ -1,5 +1,5 @@
 # Mixin to implement standard File menu actions.
-module FileMenu
+module FileMenuActions
   def file_new_menu_item_action_performed
     new_document
   end

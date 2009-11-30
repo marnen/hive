@@ -34,10 +34,7 @@ public class IntroWindow extends javax.swing.JFrame {
   private void initComponents() {
 
     jLabel1 = new javax.swing.JLabel();
-    jMenuBar1 = new javax.swing.JMenuBar();
-    file_menu = new javax.swing.JMenu();
-    file_new_menu_item = new javax.swing.JMenuItem();
-    file_open_menu_item = new javax.swing.JMenuItem();
+    menu_bar = new javax.swing.JMenuBar();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("intro_window/Bundle"); // NOI18N
@@ -45,22 +42,7 @@ public class IntroWindow extends javax.swing.JFrame {
 
     jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel1.setText(bundle.getString("welcome")); // NOI18N
-
-    java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("document/Bundle"); // NOI18N
-    file_menu.setText(bundle1.getString("Document.file_menu.text")); // NOI18N
-    file_menu.setLabel(bundle1.getString("FileMenu.text")); // NOI18N
-
-    file_new_menu_item.setAccelerator(ViewUtilities.makeShortcut(java.awt.event.KeyEvent.VK_N));
-    file_new_menu_item.setText(bundle1.getString("FileMenu.New")); // NOI18N
-    file_menu.add(file_new_menu_item);
-
-    file_open_menu_item.setAccelerator(ViewUtilities.makeShortcut(java.awt.event.KeyEvent.VK_O));
-    file_open_menu_item.setText(bundle1.getString("FileMenu.Open")); // NOI18N
-    file_menu.add(file_open_menu_item);
-
-    jMenuBar1.add(file_menu);
-
-    setJMenuBar(jMenuBar1);
+    setJMenuBar(menu_bar);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -76,7 +58,7 @@ public class IntroWindow extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
         .addComponent(jLabel1)
-        .addContainerGap(11, Short.MAX_VALUE))
+        .addContainerGap(32, Short.MAX_VALUE))
     );
 
     pack();
@@ -95,11 +77,8 @@ public class IntroWindow extends javax.swing.JFrame {
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JMenu file_menu;
-  private javax.swing.JMenuItem file_new_menu_item;
-  private javax.swing.JMenuItem file_open_menu_item;
   private javax.swing.JLabel jLabel1;
-  private javax.swing.JMenuBar jMenuBar1;
+  private javax.swing.JMenuBar menu_bar;
   // End of variables declaration//GEN-END:variables
 
 }
