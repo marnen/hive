@@ -24,8 +24,7 @@ public class FileMenu extends javax.swing.JMenu {
     file_open_menu_item = new javax.swing.JMenuItem();
 
     // TODO: Move bundle file to a more appropriate place.
-    java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("document/Bundle"); // NOI18N
-    setText(bundle.getString("Document.file_menu.text")); // NOI18N
+    java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("file_menu/Bundle"); // NOI18N
     setLabel(bundle.getString("FileMenu.text")); // NOI18N
 
     file_new_menu_item.setAccelerator(ViewUtilities.makeShortcut(java.awt.event.KeyEvent.VK_N));

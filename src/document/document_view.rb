@@ -3,6 +3,7 @@ class DocumentView < ApplicationView
   map :view => 'data_table.model', :model => :data
   map :view => 'scroll_pane.row_header', :model => 'data.row_header'
   raw_mapping :set_window_title, :get_window_title # map window title to model.title
+  nest :view => :menu_bar, :sub_view => :menus
 
   protected
 

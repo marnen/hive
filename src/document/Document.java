@@ -35,11 +35,7 @@ public class Document extends javax.swing.JFrame {
 
     scroll_pane = new javax.swing.JScrollPane();
     data_table = new javax.swing.JTable();
-    jMenuBar1 = new javax.swing.JMenuBar();
-    file_menu = new javax.swing.JMenu();
-    file_new_menu_item = new javax.swing.JMenuItem();
-    file_open_menu_item = new javax.swing.JMenuItem();
-    jMenu2 = new javax.swing.JMenu();
+    menu_bar = new javax.swing.JMenuBar();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("document/Bundle"); // NOI18N
@@ -47,23 +43,7 @@ public class Document extends javax.swing.JFrame {
 
     scroll_pane.setViewportView(data_table);
 
-    file_menu.setText(bundle.getString("Document.file_menu.text")); // NOI18N
-    file_menu.setLabel(bundle.getString("FileMenu.text")); // NOI18N
-
-    file_new_menu_item.setAccelerator(ViewUtilities.makeShortcut(java.awt.event.KeyEvent.VK_N));
-    file_new_menu_item.setText(bundle.getString("FileMenu.New")); // NOI18N
-    file_menu.add(file_new_menu_item);
-
-    file_open_menu_item.setAccelerator(ViewUtilities.makeShortcut(java.awt.event.KeyEvent.VK_O));
-    file_open_menu_item.setText(bundle.getString("FileMenu.Open")); // NOI18N
-    file_menu.add(file_open_menu_item);
-
-    jMenuBar1.add(file_menu);
-
-    jMenu2.setText(bundle.getString("Document.jMenu2.text_1")); // NOI18N
-    jMenuBar1.add(jMenu2);
-
-    setJMenuBar(jMenuBar1);
+    setJMenuBar(menu_bar);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -73,7 +53,7 @@ public class Document extends javax.swing.JFrame {
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(scroll_pane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+      .addComponent(scroll_pane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
     );
 
     pack();
@@ -92,11 +72,7 @@ public class Document extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTable data_table;
-  private javax.swing.JMenu file_menu;
-  private javax.swing.JMenuItem file_new_menu_item;
-  private javax.swing.JMenuItem file_open_menu_item;
-  private javax.swing.JMenu jMenu2;
-  private javax.swing.JMenuBar jMenuBar1;
+  private javax.swing.JMenuBar menu_bar;
   private javax.swing.JScrollPane scroll_pane;
   // End of variables declaration//GEN-END:variables
 

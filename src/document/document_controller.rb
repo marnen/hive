@@ -1,6 +1,5 @@
 class DocumentController < ApplicationController
-  require 'file_menu'
-  include FileMenu
+  require 'file_menu_controller'
 
   set_model 'DocumentModel' do |model|
     # Workaround since {DocumentModel.new @filename} doesn't work -- see http://kenai.com/jira/browse/MONKEYBARS-15
@@ -10,6 +9,11 @@ class DocumentController < ApplicationController
 
   set_view 'DocumentView'
   #set_close_action :exit
+
+  def initialize
+    super
+    add_nested_controller :menus, FileMenuController.create_instance
+  end
 
   # Creates an instance of the controller for the specified file.
   # If filename is nil, the user is prompted for a filename.
