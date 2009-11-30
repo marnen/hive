@@ -8,10 +8,10 @@ Feature: Startup
     Given I have started the application
     Then I should see the frame "Hive"
 
-  @pending
-  Scenario: Application frame has a file menu
+  Scenario: Application frame has a File menu
     Given the frame "Hive" is visible
-    When I click on the menu "File/New"
-    And I select the temporary file "File menu"
+    When I click the menu "File/New"
+    Given the file chooser "New" is visible
+    When I select the temporary file "File menu"
     And I approve the file chooser
     Then I should see the frame "File menu"
