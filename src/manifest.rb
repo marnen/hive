@@ -75,5 +75,5 @@ when Monkeybars::Resolver::IN_FILE_SYSTEM
   add_to_classpath '../lib/java/h2-1.2.123.jar'
 when Monkeybars::Resolver::IN_JAR_FILE
   # Files to be added only when run from inside a jar file
-  add_to_loadpath 'sequel/lib'
+  add_to_load_path 'sequel/lib'
 end
