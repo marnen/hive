@@ -1,6 +1,6 @@
 class ApplicationController < Monkeybars::Controller
-  require 'tmpdir'
   require 'document_controller'
+  require 'intro_window_controller'
   
   # Add content here that you want to be available to all the controllers
   # in your application
@@ -13,15 +13,15 @@ class ApplicationController < Monkeybars::Controller
       DocumentController.active_controllers.values do |c|
         c.close
       end
+      IntroWindowController.instance.close
       
       startup
     end
 
     # Starts the application.
     def startup
-      # TODO: stop opening this wasteful document at startup!
       # TODO: remove tmpdir from lib/ruby when we remove this line.
-      DocumentController.create_instance(File.join Dir.mktmpdir('hive'), '*scratch*').open
+      IntroWindowController.instance.open
     end
 
     # Displays a file chooser dialog with the supplied title and mode.
