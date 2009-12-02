@@ -25,7 +25,7 @@ class DocumentModel
         @filename = string
         create_file @filename if @new_file
         db = File.join File.expand_path(@filename), 'data'
-        @data = DataTableModel.new(db) if (@new_file or File.exists?(db + '.h2'))
+        @data = DataTableModel.new(db) # if (@new_file or File.exists?(db + '.h2'))
       end
       return @filename
     else

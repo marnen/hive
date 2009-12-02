@@ -25,35 +25,27 @@ class ApplicationController < Monkeybars::Controller
     end
 
     # Displays a file chooser dialog with the supplied title and mode.
-    # Mode can be :load or :save.
+    # Mode can be :open (with synonym :load) or :save.
     # Returns the full pathname of the selected file, or nil if the dialog was cancelled.
     # TODO: Should this be in its own class?  Should it return the File object itself?
     def choose_file(title, mode = :save)
-      if $MOCK_FILE_CHOOSERS # Fake the dialog since Swinger can't drive AWT widgets
-        choose_file_mock title, mode
-      else
-        choose_file_awt title, mode
-      end
+      choose_file_swing title, mode
     end
 
     protected
 
-    def choose_file_awt(title, mode)
-      java_mode =  java.awt.FileDialog.const_get mode.to_s.upcase!
-      dialog = java.awt.FileDialog.new(nil, title, java_mode)
-      dialog.show
-      if dialog.file.nil? # User cancelled without selecting a file
-        return nil
-      end
-      return dialog.directory + dialog.file
-    end
-
-    def choose_file_mock(title, mode)
-      filename = javax.swing.JOptionPane.show_input_dialog(nil, _('Enter file path:'), title, javax.swing.JOptionPane::QUESTION_MESSAGE)
-      if filename.nil? # User cancelled
-        return nil
+    def choose_file_swing(title, mode)
+      mode = :open if mode == :load # support for AWT-style mode
+      dialog_type =  javax.swing.JFileChooser.const_get(mode.to_s.upcase + '_DIALOG')
+      dialog = javax.swing.JFileChooser.new
+      dialog.dialog_title = title
+      dialog.dialog_type = dialog_type
+      dialog.file_selection_mode = javax.swing.JFileChooser::DIRECTORIES_ONLY
+      value = dialog.send "show_#{mode}_dialog", nil
+      if value == javax.swing.JFileChooser::APPROVE_OPTION
+        dialog.selected_file.absolute_path
       else
-        return File.expand_path filename
+        nil
       end
     end
   end

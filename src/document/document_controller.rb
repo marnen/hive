@@ -22,8 +22,13 @@ class DocumentController < ApplicationController
     dialog_title = new_file ? _('New') : _('Open')
     filename ||= choose_file(dialog_title, new_file ? :save : :load)
 
-    @new_file = new_file
-    @filename = filename
-    super()
+    if filename.nil?
+      # User cancelled file chooser.
+      return nil
+    else
+      @new_file = new_file
+      @filename = filename
+      super()
+    end
   end
 end
