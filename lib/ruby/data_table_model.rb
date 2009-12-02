@@ -1,13 +1,32 @@
 # This is a Ruby table model implementation inheriting from javax.swing.DefaultTableModel.
+# TODO: Remove inheritance from DefaultTableModel when appropriate, and just implement TableModel interface directly.
 class DataTableModel < javax.swing.table.DefaultTableModel
   require 'row_header_model'
+  require 'sequel'
 
-  def initialize
-    @data = Array.new(row_count) do |r|
-      Array.new(column_count) do |c|
-        "R#{r + 1},C#{c + 1}"
+  def initialize(filename)
+    super()
+    @db = Sequel.connect 'jdbc:h2:file:' + File.expand_path(filename)
+    
+    # Yes, this is a placeholder table. We'll make this more flexible shortly.
+    cols = column_count
+    @db.create_table :table do
+      primary_key :id
+      1.upto(cols).each do |c|
+        String "column_#{c}"
       end
     end
+
+    # Make some placeholder data for now.
+    @data = @db[:table]
+    values = 1.upto(row_count).collect do |r|
+      h = {}
+      1.upto(column_count) do |c|
+        h[:"column_#{c}"] = "R#{r}, C#{c}"
+      end
+      h
+    end
+    @data.multi_insert values
   end
   
   def column_count
@@ -36,19 +55,30 @@ class DataTableModel < javax.swing.table.DefaultTableModel
     RowHeaderModel.new(row_count).table
   end
 
+  # row and col are 0-based.
   def set_value_at(value, row, col)
-    if row >= row_count or col >= column_count
-      raise IndexError, "(#{row}, #{col}) is beyond the maximum coordinates, which are (#{row_count - 1}, #{column_count - 1})."
-    end
-    @data[row][col] = value
+    check_row(row, col)
+    @data.filter(:id => row + 1).update(:"column_#{col + 1}" => value)
+    value
   end
 
+  # row and col are 0-based.
   def value_at(row, col)
-    @data[row][col]
+    check_row(row, col)
+    @data[:id => row + 1][:"column_#{col + 1}"]
   end
 
   # Define some Java-style aliases, since these are already defined in the superclass.
   [:getColumnCount, :getRowCount, :getValueAt, :setValueAt].each do |method|
     alias_java_method method
+  end
+
+  protected
+
+  # Raise IndexError if row and col are out of range for this table.
+  def check_row(row, col)
+    if row >= row_count or col >= column_count
+      raise IndexError, "(#{row}, #{col}) is beyond the maximum coordinates, which are (#{row_count - 1}, #{column_count - 1})."
+    end
   end
 end

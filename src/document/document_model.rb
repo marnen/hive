@@ -10,7 +10,6 @@ class DocumentModel
   attr_accessor :new_file
 
   def initialize(filename = nil, new_file = true)
-    @data = DataTableModel.new
     @new_file = new_file
     if filename
       self.filename = filename
@@ -22,8 +21,11 @@ class DocumentModel
   def filename=(string)
     if filename.nil?
       if string # don't bother if we got passed another nil
+        # TODO: Untangle these conditions and remove hard-coded '.h2'.
         @filename = string
         create_file @filename if @new_file
+        db = File.join File.expand_path(@filename), 'data'
+        @data = DataTableModel.new(db) if (@new_file or File.exists?(db + '.h2'))
       end
       return @filename
     else
