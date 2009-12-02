@@ -73,6 +73,7 @@ case Monkeybars::Resolver.run_location
 when Monkeybars::Resolver::IN_FILE_SYSTEM
   # Files to be added only when running from the file system go here
   add_to_classpath '../lib/java/h2-1.2.123.jar'
+  $LOAD_PATH << File.join(ENV_JAVA['jruby.home'], 'lib/ruby/1.8') # so we can have the standard library
 when Monkeybars::Resolver::IN_JAR_FILE
   # Files to be added only when run from inside a jar file
   add_to_load_path 'sequel/lib'
