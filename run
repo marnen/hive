@@ -1,0 +1,2 @@
+#!/bin/bash
+jruby -J-cp package/classes -rubygems src/main.rb

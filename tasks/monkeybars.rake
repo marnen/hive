@@ -87,8 +87,3 @@ def camelize(name, first_letter_in_uppercase = true)
     name[0..0] + camelize(name[1..-1])
   end
 end
-
-desc 'Runs the application from the filesystem.'
-task :run do
-  system "CLASSPATH=package/classes jruby -rubygems src/main.rb"
-end
