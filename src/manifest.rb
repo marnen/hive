@@ -38,6 +38,7 @@ require 'monkeybars'
 # FastGettext stuff has to be here so application_view can use it.
 require 'gettext'
 APP_NAME = 'Hive'
+DOCUMENT_EXTENSION = 'hive' # extension for our documents -- doesn't have to be here, but makes sense
 class Class
   def load_gettext
     include GetText
@@ -73,6 +74,16 @@ case Monkeybars::Resolver.run_location
 when Monkeybars::Resolver::IN_FILE_SYSTEM
   # Files to be added only when running from the file system go here
   add_to_classpath '../lib/java/h2-1.2.123.jar'
+  if $MAC_OSX and !$NO_QUAQUA
+    # Install Quaqua.
+    begin
+      $CLASSPATH << '/System/Library/Java' # can't use add_to_classpath with absolute path
+      add_to_classpath '../lib/java/quaqua-filechooser-only.jar'
+      javax.swing.UIManager.look_and_feel = Java::ch.randelshofer.quaqua.QuaquaManager.look_and_feel_class_name
+    rescue
+      puts "Couldn't install Quaqua; falling back to default look and feel..."
+    end
+  end
   $LOAD_PATH << File.join(ENV_JAVA['jruby.home'], 'lib/ruby/1.8') # so we can have the standard library
 when Monkeybars::Resolver::IN_JAR_FILE
   # Files to be added only when run from inside a jar file

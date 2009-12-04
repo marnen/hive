@@ -7,6 +7,7 @@ $CLASSPATH << path + '/../../package/classes'
 puts "It takes a while for the scenarios to begin executing, so please be patient..."
 
 $NO_MAC_MENUBAR = true # disable Mac-style menu bars so Swinger can drive the menus
+$NO_QUAQUA = true # Turn off Quaqua since it seems to cause problems for Swinger
 # TODO: put those global variables in a config object or something
 require path + '/../../src/main'
 sleep(1)

@@ -1,2 +1,2 @@
 #!/bin/bash
-jruby -J-cp package/classes -rubygems src/main.rb
+jruby -J-cp package/classes -J-Djava.library.path=lib/java -rubygems src/main.rb
