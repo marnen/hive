@@ -45,9 +45,6 @@ class Class
   end
 end
 
-require 'application_controller'
-require 'application_view'
-
 # End of Monkeybars requires
 #===============================================================================
 #
@@ -68,6 +65,9 @@ require 'application_view'
 #
 
 require 'utilities' # Some common app-wide stuff
+
+require 'application_controller'
+require 'application_view'
 
 case Monkeybars::Resolver.run_location
 when Monkeybars::Resolver::IN_FILE_SYSTEM
