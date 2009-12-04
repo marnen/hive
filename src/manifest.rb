@@ -88,4 +88,15 @@ when Monkeybars::Resolver::IN_FILE_SYSTEM
 when Monkeybars::Resolver::IN_JAR_FILE
   # Files to be added only when run from inside a jar file
   add_to_load_path 'sequel/lib'
+
+  if $MAC_OSX and !$NO_QUAQUA # TODO: unify with Quaqua installation above
+    begin
+      $CLASSPATH << '/System/Library/Java' # can't use add_to_classpath with absolute path
+      javax.swing.UIManager.look_and_feel = Java::ch.randelshofer.quaqua.QuaquaManager.look_and_feel_class_name
+    rescue
+      puts "Couldn't install Quaqua; falling back to default look and feel..."
+    end
+  end
+
+  add_to_load_path '../lib/java/jruby-complete.jar!/META-INF/jruby.home/lib/ruby/1.8' # standard library
 end
