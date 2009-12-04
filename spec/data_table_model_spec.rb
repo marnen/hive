@@ -31,6 +31,10 @@ describe DataTableModel do
       DataTableModel.new filename
       lambda {DataTableModel.new filename}.should_not raise_error
     end
+
+    it "should not add new rows to an existing data table just by opening it" do
+      pending "can't really spec this yet, since row_count is stubbed"
+    end
   end
 
   describe "instance methods" do

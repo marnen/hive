@@ -17,16 +17,18 @@ class DataTableModel < javax.swing.table.DefaultTableModel
       end
     end
 
-    # Make some placeholder data for now.
     @data = @db[:table]
-    values = 1.upto(row_count).collect do |r|
-      h = {}
-      1.upto(column_count) do |c|
-        h[:"column_#{c}"] = "R#{r}, C#{c}"
+    if @data.empty?
+      # Make some placeholder data for now.
+      values = 1.upto(row_count).collect do |r|
+        h = {}
+        1.upto(column_count) do |c|
+          h[:"column_#{c}"] = "R#{r}, C#{c}"
+        end
+        h
       end
-      h
+      @data.multi_insert values
     end
-    @data.multi_insert values
   end
   
   def column_count
