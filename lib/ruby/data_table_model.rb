@@ -10,7 +10,7 @@ class DataTableModel < javax.swing.table.DefaultTableModel
     
     # Yes, this is a placeholder table. We'll make this more flexible shortly.
     cols = column_count
-    @db.create_table :table do
+    @db.create_table? :table do
       primary_key :id
       1.upto(cols).each do |c|
         String "column_#{c}"

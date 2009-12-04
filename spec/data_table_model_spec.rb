@@ -25,6 +25,12 @@ describe DataTableModel do
     it "should give a new table two columns" do
       DataTableModel.new(File.join @tmpdir, 'Columns').column_count.should == 2
     end
+
+    it "should not try to create a data table that already exists" do
+      filename = File.join @tmpdir, 'Duplicate table'
+      DataTableModel.new filename
+      lambda {DataTableModel.new filename}.should_not raise_error
+    end
   end
 
   describe "instance methods" do
