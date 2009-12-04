@@ -29,12 +29,6 @@ class ApplicationController < Monkeybars::Controller
     # Returns the full pathname of the selected file, or nil if the dialog was cancelled.
     # TODO: Should this be in its own class?  Should it return the File object itself?
     def choose_file(title, mode = :save)
-      choose_file_swing title, mode
-    end
-
-    protected
-
-    def choose_file_swing(title, mode)
       mode = :open if mode == :load # support for AWT-style mode
       dialog_type =  javax.swing.JFileChooser.const_get(mode.to_s.upcase + '_DIALOG')
       dialog = javax.swing.JFileChooser.new
